@@ -2,6 +2,9 @@
 
 > 长春市地理信息服务平台
 
+## Open source statement
+本项目使用基于vue+element的后台模板vue-element-admin-tpl开发
+[vue-element-admin-tpl](https://github.com/mengdu/vue-element-admin-tpl)
 ## Build Setup
 
 ``` bash

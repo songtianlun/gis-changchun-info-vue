@@ -20,7 +20,7 @@
     <div style="margin-top: 50px"></div>
     <p class="text-tips">
       <i class="fa fa-meetup" style="color: #29ABE2"></i>&nbsp;
-      <span class="footer-text">{{appName}} &nbsp;<el-tag size="mini">{{version}}</el-tag> <br>©make by <a href="https://www.github.com/mengdu" target="_blank">{{author}}</a>
+      <span class="footer-text">{{appName}} &nbsp;<el-tag size="mini">{{version}}</el-tag> <br>©make by <a href="https://github.com/songtianlun" target="_blank">{{author}}</a>
   </span>
     </p>
   </div>
