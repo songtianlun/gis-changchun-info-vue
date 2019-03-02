@@ -1,11 +1,11 @@
 {
-  "name": "vue-element-admin-tpl",
-  "version": "1.0.4",
+  "name": "gis-changchun-info-vue",
+  "version": "0.0.1",
   "description": "A template for Vue",
-  "author": "lanyue <lanyueos@qq.com>",
+  "author": "haut-gis-org <songtianlun@frytea.com>",
   "private": true,
   "app": {
-    "name": "基于Vue的后台管理系统模板"
+    "name": "长春市公共信息服务平台"
   },
   "license": "MIT",
   "scripts": {

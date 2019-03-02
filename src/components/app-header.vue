@@ -22,7 +22,7 @@
       <m-dropdown align="right" v-if="user" padding="0 10px">
         <a href="#" style="display: inline-block; padding: 0px; color: inherit">
           <img src="../assets/user.jpg" alt="" style="border-radius: 3px;vertical-align: middle;">
-          <span>{{user.username}}</span> 
+          <span>{{user.username}}</span>
           <span class="caret"></span>
         </a>
         <m-dropdown-panel>
@@ -36,8 +36,8 @@
     </m-nav-item>
     <m-nav-item padding="0 5px">
       <a href="#" @click.stop.prevent="handleSwitchScreen">
-        <i 
-          class="fa" 
+        <i
+          class="fa"
           :class="isFullScreen ? 'fa-compress' : 'fa-expand'"
           ></i>
       </a>

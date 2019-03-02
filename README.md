@@ -1,98 +1,6 @@
-# vue-element-admin-tpl
+# gis-changchun-info-vue
 
-基于vue + element-ui开发的后端管理系统模板。
-
-+ vue
-+ vue-router
-+ axios
-+ element-ui
-+ nprogress
-+ 使用了 `FontAwesome 4.7.0` 的图标
-
-
-
-> `src/m` 目录下收藏了些本人工作时开发的一些组件，欢迎使用与提建议；使用方法请看对应的README.md说明文档。
-
-> 注：布局采用了 `display:flex` 实现，在IE上可能会出现一些不愉快的事情。
-
-
-## 实现组件
-
-+ [按钮组件](src/m/button)
-+ [多选框](src/m/checkbox)
-+ [switch](src/m/switch)
-+ [输入框](src/m/input)
-+ [导航](src/m/navbar)
-+ [dropdown](src/m/dropdown)
-+ [响应式布局](src/m/container)
-+ [加载等待](src/m/loading)
-+ [提示](src/m/alert)
-+ [回到到顶部](src/m/back-top)
-+ [盒子](src/m/box)
-+ [列表组](src/m/list-group)
-+ [虚拟键盘（中/英）](src/m/keyboard)
-+ [虚拟数字键盘](src/m/number-keyboard)
-
-
-## 页面
-
-+ [登录](http://vadmin.lanyueos.com/login)
-+ [注册](http://vadmin.lanyueos.com/register)
-+ [404](http://vadmin.lanyueos.com/404)
-+ [500](http://vadmin.lanyueos.com/500)
-
-+ [cnode](http://vadmin.lanyueos.com/cnode)
-
-
-## 截图
-
-![截图](2018-02-08_231542.png)
-
-![截图](20180117171004.png)
-
-![截图](20180117170917.png)
-
-
-## 关于打包
-
-
-对于打包，如果你使用git管理，推荐使用 `npm run publish` 命令进行打包，这样的的话打包前会执行更新 `package.json` 中的version字段；
-打包时会挂载 `APP_INFO` 对象到 `window` 对象上，在vue组件中可以直接 `window.APP_INFO` 访问版本信息。
-
-**window.APP_INFO**
-
-```js
-// window.APP_INFO对象大致内容
-
-{
-  projectName: pkg.name,
-  version: pkg.version,
-  description: pkg.description,
-  author: pkg.author,
-  appName: pkg.app && pkg.app.name || pkg.appName,
-  dependencies: pkg.dependencies,
-  engines: pkg.engines,
-  license: pkg.license,
-
-  // 如果是npm run publish打包会存在下面两个字段
-  // 打包时间
-  date: '',
-  // 本次打包MD5
-  md5: ''
-}
-
-```
-> 为什这么做？
-> 方便知道谁，什么时候打的包
-
-
-## 案例
-
-1、[**浙中牛牛**（预览版）](http://www.lanyueos.com:3003) 账号：admin 密码：123456 （请不要乱改数据）
-
-![浙中牛牛 预览版](20180117175701.png)
-
-
+> 长春市地理信息服务平台
 
 ## Build Setup
 
@@ -108,15 +16,29 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
+# 环境配置
+
+## 第一步:node.js安装
+
+Vue项目通常通过webpack工具来构建，而webpack命令的执行是依赖node.js的环境的，所以首先要安装node.js。node.js的官方地址为：[https://nodejs.org/en/download/](https://link.jianshu.com/?t=https://nodejs.org/en/download/)，下载相应版本。
+
+安装完毕之后，在命令行下验证是否安装成功：输入npm，显示如下就表示安装成功。
+
+![](http://pnabaentf.bkt.clouddn.com//20190301094005.png)
+
+
+## 第二步:vue-cli的安装
+
+vue-cli是vue官方提供的一个命令行工具，可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程。只需一分钟即可启动带热重载、保存时静态检查以及可用于生产环境的构建配置的项目。
+ 安装命令为：
+
+`npm install -g vue-cli`
+
+回车，等待安装。
+
+安装完后，检查是否安装成功，输入vue，出现以下提示表示安装成功
+
+![](http://pnabaentf.bkt.clouddn.com//20190301094223.png)
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
