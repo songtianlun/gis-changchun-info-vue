@@ -16,7 +16,7 @@
   </m-nav>
   <m-nav align="right">
     <m-nav-item padding="0">
-      <a href="https://github.com/mengdu/vue-element-admin-tpl" target="_blank"><i class="fa fa-github" style="font-size: 26px;vertical-align: middle;"></i>&nbsp;Github</a>
+      <a href="https://github.com/haut-gis-org/gis-changchun-info-vue" target="_blank"><i class="fa fa-github" style="font-size: 26px;vertical-align: middle;"></i>&nbsp;Github</a>
     </m-nav-item>
     <m-nav-item padding="0">
       <m-dropdown align="right" v-if="user" padding="0 10px">

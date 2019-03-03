@@ -5,7 +5,7 @@
     <img src="../assets/logo.png" alt="" style="margin-top: 50px;width: 200px;">
     <h1 style="font-weight: 100;font-size: 35px;">基于vue 2 + element-ui 2 的后台管理平台模板</h1>
     <div class="text-center">
-      <a href="https://github.com/mengdu/vue-element-admin-tpl">
+      <a href="https://github.com/haut-gis-org/gis-changchun-info-vue">
         <m-button type="info" size="max" round >Github</m-button>
       </a>&nbsp;&nbsp;
       <a href="https://www.lanyueos.com">
@@ -13,7 +13,7 @@
       </a>
     </div>
   </center>
- 
+
 </div>
 </template>
 <script type="text/javascript">
