@@ -1,5 +1,5 @@
 const menus = [
-  {id: '0', label: '控制面板', path: '/', icon: 'fa fa-dashboard'},
+  {id: '0', label: '欢迎使用', path: '/', icon: 'fa fa-dashboard'},
   {
     id: 'components',
     icon: 'fa fa-microchip',
@@ -64,6 +64,12 @@ const menus = [
     id: 'version',
     icon: 'fa fa-meetup',
     label: '应用'
+  },
+  {
+    id: 'about',
+    icon: 'fa fa-info',
+    path: '/about',
+    label: '关于'
   }
 ]
 export default menus

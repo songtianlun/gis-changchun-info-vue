@@ -1,8 +1,7 @@
 <template>
-<div class="body">
 
   <center>
-    <img src="../assets/logo.png" alt="" style="margin-top: 50px;width: 200px;">
+    <img src="../assets/logo-gis-changchun-info-vue.png" alt="" style="margin-top: 50px;width: 200px;">
     <h1 style="font-weight: 100;font-size: 35px;">长春市公共信息服务平台</h1>
     <h3 style="font-weight: 100;font-size: 35px;">vue 2 + element-ui 2</h3>
     <div class="text-center">
@@ -12,17 +11,19 @@
       <a href="https://www.lanyueos.com">
         <m-button type="success" size="max" round plain>关于我</m-button>
       </a>
-    </div>
-  </center>
 
-</div>
+    </div>
+    <a href="https://www.iconfinder.com/icons/2090181/geo_global_world_icon">geo_global_world_icon</a>
+  </center>
 </template>
-<script type="text/javascript">
-export default {
-  name: 'home'
-}
+
+<script>
+    export default {
+      name: 'about'
+    }
 </script>
-<style type="text/css">
+
+<style scoped>
   .test{
     height: 40px;
     background: #ccc;

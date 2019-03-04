@@ -1,6 +1,6 @@
 <template>
-  <div class="vue-leaflet">
-    <l-map style="width: 100%; height: 600px;" :zoom="zoom" :center="center">
+  <div style="height:100%;width: 100%" class="vue-leaflet">
+    <l-map style="width: 100%; height: 100%;" :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <l-marker :lat-lng="marker"> <l-popup :content="text"></l-popup>
       </l-marker>
@@ -34,5 +34,8 @@
 </script>
 
 <style scoped>
-
+  #Map{
+    width:100%;
+    height:100%;
+  }
 </style>
