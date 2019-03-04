@@ -1,4 +1,5 @@
 <template>
+
   <div class="header">
     <div class="cnode-container">
       <m-navbar class="cnode-navbar">
@@ -16,19 +17,22 @@
           <m-nav-item><a href="https://blog.lanyueos.com" target="_blank">博客</a></m-nav-item>
           <m-nav-item><a href="https://www.lanyueos.com" target="_blank">关于</a></m-nav-item>
           <m-nav-item><a href="https://www.github.com/mengdu" target="_blank">Github</a></m-nav-item>
+
           <m-nav-item>
             <span>
               <el-badge :value="5" is-dot><i class="fa fa-bell"></i></el-badge>
             </span>
-            
+
           </m-nav-item>
           <m-nav-item>
           <m-dropdown align="right">
             <a href="#" style="display: inline-block;">
               <img src="../../assets/user.jpg" alt="" style="vertical-align: middle; border-radius: 3px;">
-              <span>Lanyue</span> 
+              <span>Lanyue</span>
               <span class="caret"></span>
+
             </a>
+
             <m-dropdown-panel>
               <m-dropdown-item><i class="fa fa-vcard-o"></i>&nbsp;用户信息</m-dropdown-item>
               <m-dropdown-item command="article"><i class="fa fa-pencil"></i>&nbsp;修改密码</m-dropdown-item>
@@ -41,9 +45,11 @@
           </m-dropdown>
           </m-nav-item>
         </m-nav>
+
       </m-navbar>
     </div>
   </div>
+
 </template>
 <script>
 export default {
@@ -53,6 +59,8 @@ export default {
 }
 </script>
 <style>
+
+
   .cnode-container .m-navbar.cnode-navbar{
     background-color: inherit;
   }
@@ -71,6 +79,6 @@ export default {
     border: none;
     padding: 5px 15px;
     box-sizing: border-box;
-    
+
   }
 </style>

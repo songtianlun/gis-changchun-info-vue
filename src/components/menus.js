@@ -48,7 +48,8 @@ const menus = [
       {id: 'p3', name: 'p-register', label: 'Register 注册'},
       {id: '400', path: '/404', label: '404'},
       {id: '500', path: '/500', label: '500'},
-      {id: 'VueLeaflet', path: '/VueLeaflet', label: 'VueLeaflet'}
+      {id: 'VueLeaflet', path: '/VueLeaflet', label: 'VueLeaflet'},
+      {id: 'Supermap-map', path: '/Supermap-map', label: 'Supermap-map'}
     ]
   },
   {

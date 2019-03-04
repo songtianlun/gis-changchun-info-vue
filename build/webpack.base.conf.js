@@ -74,6 +74,15 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: [
+          path.resolve(__dirname, "node_modules/@supermap/iclient-common"),
+          path.resolve(__dirname, "node_modules/@supermap/iclient-leaflet"),
+          path.resolve(__dirname, "node_modules/elasticsearch"),
+        ]
       }
     ]
   },

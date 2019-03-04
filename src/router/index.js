@@ -30,7 +30,8 @@ export default new Router({
         {path: '/demo', name: 'demo', component: page('demo')},
         {path: '/404', name: '404', component: page('404')},
         {path: '/500', name: '500', component: page('500')},
-        {path: '/VueLeaflet', name: 'VueLeaflet', component: page('VueLeaflet')}
+        {path: '/VueLeaflet', name: 'VueLeaflet', component: page('VueLeaflet')},
+        {path: '/Supermap-map', name: 'Supermap-map', component: page('Supermap-map')}
       ]
     },
     {path: '/login', name: 'login', component: page('login')},
