@@ -11,6 +11,16 @@ const menus = [
     submenu: [
       {id: 'VueLeaflet', icon: 'fa fa-leaf', path: '/VueLeaflet', label: 'VueLeaflet'},
       {id: 'Supermap-map', icon: 'fa fa-map', path: '/Supermap-map', label: 'Supermap-map'},
+      {
+        id: 'haut-gis-org',
+        icon: 'fa fa-mortar-board',
+        label: '开发进程',
+        submenu: [
+          {id: 'dev-master-mape', name: 'dev-master-map', path: '/dev-master-map', label: '地图显示模块'},
+          {id: 'dev-translate', name: 'dev-translate', path: '/dev-translate', label: '路径分析模块'},
+          {id: 'dev-search', name: 'dev-search', path: '/dev-search', label: '信息查询'}
+        ]
+      },
       {id: 'components',
         icon: 'fa fa-microchip',
         label: '组件',
@@ -52,6 +62,7 @@ const menus = [
     icon: 'fa fa-info',
     path: '/about',
     label: '关于'
-  }
+  },
+
 ]
 export default menus
