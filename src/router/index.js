@@ -32,7 +32,11 @@ export default new Router({
         {path: '/500', name: '500', component: page('500')},
         {path: '/VueLeaflet', name: 'VueLeaflet', component: page('VueLeaflet')},
         {path: '/Supermap-map', name: 'Supermap-map', component: page('Supermap-map')},
-        {path: '/about', name: 'about', component: page('about')}
+        {path: '/about', name: 'about', component: page('about')},
+        {path: '/gis-master-map', name: 'gis-master-map', component: page('gis-master-map')},
+        {path: '/gis-info-form', name: 'gis-info-form', component: page('gis-info-form')},
+        {path: '/gis-population-density', name: 'gis-population-density', component: page('gis-population-density')},
+        {path: '/gis-information-map', name: 'gis-information-map', component: page('gis-information-map')}
       ]
     },
     {path: '/login', name: 'login', component: page('login')},
