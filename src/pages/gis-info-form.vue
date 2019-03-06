@@ -1,6 +1,6 @@
 <template>
   <center>
-    <img src="../assets/logo.png" alt="" style="margin-top: 50px;width: 200px;">
+    <img src="http://pnabaentf.bkt.clouddn.com//logo-gis-changchun-info-vue.png" alt="" style="margin-top: 50px;width: 200px;">
     <h1 style="font-weight: 100;font-size: 35px;">长春市公共信息服务平台</h1>
     <h3 style="font-weight: 100;font-size: 35px;">信息一览</h3>
     <div class="text-center">

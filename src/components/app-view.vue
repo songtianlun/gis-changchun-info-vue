@@ -12,7 +12,7 @@
     <div class="app-header-logo-box"
       :style="{height: headerHeight + 'px', color: theme.theme.activeTextColor}"
       >
-      <img src="../assets/logo.png" alt="" class="header-logo">
+      <img src="http://pnabaentf.bkt.clouddn.com//logo-gis-changchun-info-vue.png" alt="" class="header-logo">
       <span class="header-logo-text" >控制台</span>
     </div>
     <app-side :collapse="isCollapse" :theme="theme.theme"></app-side>
