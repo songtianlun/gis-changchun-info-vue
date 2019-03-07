@@ -62,7 +62,7 @@ const menus = [
     icon: 'fa fa-info',
     path: '/about',
     label: '关于'
-  },
+  }
 
 ]
 export default menus

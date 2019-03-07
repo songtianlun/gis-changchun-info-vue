@@ -9,7 +9,7 @@
       <a href="https://github.com/haut-gis-org/gis-changchun-info-vue">
         <m-button type="info" size="max" round >Github</m-button>
       </a>&nbsp;&nbsp;
-      <a href="https://www.lanyueos.com">
+      <a href="/about">
         <m-button type="success" size="max" round plain>关于我</m-button>
       </a>
     </div>

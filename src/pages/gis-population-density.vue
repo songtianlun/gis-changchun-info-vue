@@ -4,10 +4,9 @@
 
 <script>
   import L from '@supermap/iclient-leaflet/node_modules/leaflet'
-  import heat from '@supermap/iclient-leaflet'
+  import heatLayer from '@supermap/iclient-leaflet'
 
   function loadHeatMap (map) {
-    let resultLayer
     let heatNumbers = 150
     let heatRadius = 30
     let num = parseInt(heatNumbers)
@@ -18,10 +17,11 @@
     for (let i = 0; i < num; i++) {
       heatPoints[i] = [Math.random() * 0.28 + 39.78, Math.random() * 0.5 + 116.12, Math.random() * 80]
     }
-    resultLayer = L.heatLayer(heatPoints, {
+    let resultLayer = L.heatLayer(heatPoints, {
       radius: radius,
       minOpacity: 0.5
-    }).addTo(map)
+    })
+    resultLayer.addTo(map)
   }
   export default {
     name: 'gis-population-density',
