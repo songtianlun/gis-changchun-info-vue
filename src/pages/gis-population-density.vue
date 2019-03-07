@@ -1,25 +1,60 @@
 <template>
-  <center>
-    <img src="http://pnabaentf.bkt.clouddn.com//logo-gis-changchun-info-vue.png" alt="" style="margin-top: 50px;width: 200px;">
-    <h1 style="font-weight: 100;font-size: 35px;">长春市公共信息服务平台</h1>
-    <h3 style="font-weight: 100;font-size: 35px;">人口查询</h3>
-    <div class="text-center">
-      <a href="https://github.com/haut-gis-org/gis-changchun-info-vue">
-        <m-button type="info" size="max" round >Github</m-button>
-      </a>&nbsp;&nbsp;
-      <a href="https://www.lanyueos.com">
-        <m-button type="success" size="max" round plain>关于我</m-button>
-      </a>
-    </div>
-  </center>
+  <div id="map" style="margin:0 auto;width: 100%;height: 100%"></div>
 </template>
 
 <script>
-    export default {
-      name: 'gis-population-density'
+  import L from '@supermap/iclient-leaflet/node_modules/leaflet'
+  import heat from '@supermap/iclient-leaflet'
+
+  function loadHeatMap (map) {
+    let resultLayer
+    let heatNumbers = 150
+    let heatRadius = 30
+    let num = parseInt(heatNumbers)
+    num = (num > 0) ? num : 0
+    let radius = parseInt(heatRadius)
+    radius = (radius > 0) ? radius : 0
+    let heatPoints = []
+    for (let i = 0; i < num; i++) {
+      heatPoints[i] = [Math.random() * 0.28 + 39.78, Math.random() * 0.5 + 116.12, Math.random() * 80]
     }
+    resultLayer = L.heatLayer(heatPoints, {
+      radius: radius,
+      minOpacity: 0.5
+    }).addTo(map)
+  }
+  export default {
+    name: 'gis-population-density',
+    data () {
+      return {
+        error: false,
+        map: null,
+        resultLayers: null
+      }
+    },
+    mounted () {
+      this.initMap()
+    },
+    methods: {
+      initMap: function () {
+        let host = '//114.116.67.239:8090'
+        let url = host + '/iserver/services/map-china400/rest/maps/China'
+        let map = L.map('map', {
+          preferCanvas: true,
+          center: [39.89, 116.35],
+          maxZoom: 18,
+          zoom: 11
+        })
+        L.supermap.tiledMapLayer(url).addTo(map)
+        loadHeatMap(map)
+      }
+    }
+  }
 </script>
 
 <style scoped>
-
+  #heatNumbers, #heatRadius {
+    width: 50px;
+    display: inline-block;
+  }
 </style>

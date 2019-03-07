@@ -37,6 +37,9 @@ import MContainer from '@/m/container'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 
+import '@supermap/iclient-leaflet'
+
+
 Vue.use(ElementUI)
 
 Vue.use(DropdownPlugin)

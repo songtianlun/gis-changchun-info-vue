@@ -14,7 +14,7 @@
 
 <script>
 
-  import '@supermap/iclient-leaflet'
+  import L from '@supermap/iclient-leaflet/node_modules/leaflet'
   export default {
     name: 'dev-master-map',
     data () {
