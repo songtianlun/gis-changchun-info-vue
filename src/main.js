@@ -35,9 +35,9 @@ import MBackTop from '@/m/back-top'
 import MLoader from '@/m/loader'
 import MContainer from '@/m/container'
 import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
-
+// import L from 'leaflet'
 import '@supermap/iclient-leaflet'
+import 'leaflet'
 
 
 Vue.use(ElementUI)
@@ -59,12 +59,12 @@ Vue.use(MLoader)
 Vue.use(MContainer)
 
 /* leaflet icon */
-delete L.Icon.Default.prototype._getIconUrl
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-})
+// delete L.Icon.Default.prototype._getIconUrl
+// L.Icon.Default.mergeOptions({
+//   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+//   iconUrl: require('leaflet/dist/images/marker-icon.png'),
+//   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+// })
 
 var whiteList = ['demo', 'login']
 router.beforeEach((to, from, next) => {

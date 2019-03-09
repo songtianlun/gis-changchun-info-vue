@@ -9,6 +9,7 @@ const menus = [
     icon: 'fa fa-puzzle-piece',
     label: '开发',
     submenu: [
+      {id: 'Leaflet', icon: 'fa fa-leaf', path: '/Leaflet', label: 'Leaflet'},
       {id: 'VueLeaflet', icon: 'fa fa-leaf', path: '/VueLeaflet', label: 'VueLeaflet'},
       {id: 'Supermap-map', icon: 'fa fa-map', path: '/Supermap-map', label: 'Supermap-map'},
       {
@@ -53,7 +54,8 @@ const menus = [
           {id: 'p2', name: 'p-login', label: 'Login 登录2'},
           {id: 'p3', name: 'p-register', label: 'Register 注册'},
           {id: '400', path: '/404', label: '404'},
-          {id: '500', path: '/500', label: '500'}
+          {id: '500', path: '/500', label: '500'},
+          {id: 'Random', label: '随机美图', path: '/Random', icon: 'fa fa-photo'}
         ]}
     ]
   },

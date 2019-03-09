@@ -13,7 +13,7 @@
     <!--<m-nav-item><a href="/" target="_blank">主页</a></m-nav-item>-->
     <!--<m-nav-item><a href="#" target="_blank">博客</a></m-nav-item>-->
     <!--<m-nav-item><a href="#about" target="_blank">关于</a></m-nav-item>-->
-    <a style="font-family:黑体 ;font-weight: 100;font-size: 25px; color: white;">长春市公共信息服务平台</a>
+    <a style="font-family:黑体 ;font-weight: 100;font-size: 25px; color: white;">公共信息服务平台</a>
   </m-nav>
   <m-nav align="right">
     <m-nav-item padding="0">

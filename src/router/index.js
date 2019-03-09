@@ -39,7 +39,9 @@ export default new Router({
         {path: '/gis-information-map', name: 'gis-information-map', component: page('gis-information-map')},
         {path: '/dev-master-map', name: 'dev-master-map', component: page('dev-master-map')},
         {path: '/dev-translate', name: 'dev-translate', component: page('dev-translate')},
-        {path: '/dev-search', name: 'dev-search', component: page('dev-search')}
+        {path: '/dev-search', name: 'dev-search', component: page('dev-search')},
+        {path: '/Leaflet', name: 'Leaflet', component: page('Leaflet')},
+        {path: '/Random', name: 'Random', component: page('Random')}
       ]
     },
     {path: '/login', name: 'login', component: page('login')},

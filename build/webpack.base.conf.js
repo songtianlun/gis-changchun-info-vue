@@ -22,7 +22,7 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    // vendor: ["/src/assets/iclient-leaflet/include-leaflet.js"],
+     // vendor: ["/src/assets/leaflet/leaflet.js"],
     app: './src/main.js'
   },
   output: {

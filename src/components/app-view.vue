@@ -17,7 +17,7 @@
     </div>
     <app-side :collapse="isCollapse" :theme="theme.theme"></app-side>
   </el-aside>
-  <el-container style="overflow-x: auto">
+  <el-container class = "page">
     <el-header class="app-header" :height="headerHeight + 'px'">
       <app-header @switch="handleSideSwitch" @set-theme="handleSetTheme" @hide-side="handleSwitchHideSide"></app-header>
     </el-header>
@@ -71,6 +71,10 @@ export default {
 }
 </script>
 <style type="text/css">
+  .page{
+    overflow-x: auto;
+    background-image: url("https://source.unsplash.com/random/1280x1280");
+  }
   .app-container{
     margin: 0 auto;
     position: absolute;
@@ -88,8 +92,9 @@ export default {
     transition: all 0.5s ease;
   }
   .app-container .app-body{
-    background: #ECF0F5;
+    /*background-clolr: #ECF0F5;*/
     padding: 0;
+    background-color:rgba(255,255,255,0.8);
   }
   .app-container .app-footer{
     background: #fff;
