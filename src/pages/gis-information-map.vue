@@ -124,9 +124,6 @@
       // }
     }
   }
-  function startclick() {
-
-  }
 </script>
 
 <style>
