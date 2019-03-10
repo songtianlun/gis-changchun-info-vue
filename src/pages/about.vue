@@ -14,6 +14,11 @@
         </div>
       </div></el-col>
 
+
+      <el-col :span="8"><div class="grid-content bg-lucency">
+        <iframe width='300' height='220' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='http://f.amap.com/4wOxK_0156QwE'></iframe>'
+      </div></el-col>
+
       <el-col :span="6"><div class="grid-content bg-lucency">
         <h3 style="font-family:黑体 ;font-weight: 100;font-size: 20px;">联系我们</h3>
         <div class="text-center">
@@ -21,10 +26,6 @@
           <p>E-mail：<a href="mailto:songtianlun@frytea.com">songtianlun@frytea.com</a></p>
           <p>Address：河南省郑州市中原区莲花街100号</p>
         </div>
-      </div></el-col>
-
-      <el-col :span="6"><div class="grid-content bg-lucency">
-        <iframe width="304" height="220" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://j.map.baidu.com/s/Irq_Fb"></iframe>
       </div></el-col>
 
     </el-row>

@@ -20,14 +20,14 @@
       <a href="https://github.com/haut-gis-org/gis-changchun-info-vue" target="_blank"><i class="fa fa-github" style="font-size: 26px;vertical-align: middle;"></i>&nbsp;Github</a>
     </m-nav-item>
     <m-nav-item padding="0">
-      <m-dropdown align="right" v-if="user" padding="0 10px">
+      <m-dropdown align="right" v-if="user" padding="0 10px" style="z-index:9999;position: relative;">
         <a href="#" style="display: inline-block; padding: 0px; color: inherit">
           <img src="../assets/user.jpg" alt="" style="border-radius: 3px;vertical-align: middle;">
           <span>{{user.username}}</span>
           <span class="caret"></span>
         </a>
-        <m-dropdown-panel>
-          <m-dropdown-item>用户信息</m-dropdown-item>
+        <m-dropdown-panel >
+          <m-dropdown-item >用户信息</m-dropdown-item>
           <m-dropdown-item >修改密码</m-dropdown-item>
           <m-dropdown-item disabled>注销</m-dropdown-item>
           <div class="test-line"></div>

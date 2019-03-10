@@ -27,6 +27,7 @@
     "heatmap.js": "^2.0.5",
     "leaflet": "^1.4.0",
     "leaflet.chinatmsproviders": "^2.0.3",
+    "leaflet.markercluster": "^1.4.1",
     "nprogress": "^0.2.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
@@ -92,7 +93,7 @@
     "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^2.9.7",
+    "webpack-dev-server": "^3.2.1",
     "webpack-merge": "^4.1.0"
   },
   "engines": {

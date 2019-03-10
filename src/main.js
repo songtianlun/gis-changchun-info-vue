@@ -17,6 +17,8 @@ import '@/assets/css/scrollbar.css'
 import '@/assets/css/reset.css'
 import 'nprogress/nprogress.css'
 import 'animate.css'
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 
 
 import DropdownPlugin from './m/dropdown'
@@ -38,7 +40,12 @@ import 'leaflet/dist/leaflet.css'
 // import L from 'leaflet'
 import '@supermap/iclient-leaflet'
 import 'leaflet'
+import 'heatmap.js'
 
+// import 'AMapUI'
+
+// anxio接口请求
+Vue.prototype.$http = Axios
 
 Vue.use(ElementUI)
 
@@ -59,12 +66,12 @@ Vue.use(MLoader)
 Vue.use(MContainer)
 
 /* leaflet icon */
-// delete L.Icon.Default.prototype._getIconUrl
-// L.Icon.Default.mergeOptions({
-//   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-//   iconUrl: require('leaflet/dist/images/marker-icon.png'),
-//   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-// })
+delete L.Icon.Default.prototype._getIconUrl
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+})
 
 var whiteList = ['demo', 'login']
 router.beforeEach((to, from, next) => {

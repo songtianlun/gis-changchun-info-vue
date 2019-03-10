@@ -13,6 +13,13 @@ const portfinder = require('portfinder')
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
+// 获取景点信息json
+const express = require('express')
+const app = express()
+var scenicdata = require('../src/assets/data/2017-nation-Beauty-spot-GeoJson.json')
+var apiRoutes = express.Router()
+app.use('/api', apiRoutes)
+
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
@@ -42,8 +49,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    // 获取景点信息json
+    before(app) {
+      app.get('/api/scenicdata', (req, res) => {
+        res.json({
+          errno: 0,
+          data: scenicdata
+        })
+      })
     }
-  },
+    },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env')
