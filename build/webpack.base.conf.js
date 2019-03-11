@@ -22,7 +22,7 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-     // vendor: ["/src/assets/leaflet/leaflet.js"],
+     // vendor: ["/src/assets/js/AMap.js"],
     app: './src/main.js'
   },
   output: {
@@ -80,8 +80,8 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [
-          // path.resolve(__dirname, "node_modules/@supermap/iclient-common"),
-          // path.resolve(__dirname, "node_modules/@supermap/iclient-leaflet"),
+          path.resolve(__dirname, "node_modules/@supermap/iclient-common"),
+          path.resolve(__dirname, "node_modules/@supermap/iclient-leaflet"),
           path.resolve(__dirname, "node_modules/elasticsearch"),
         ]
       }

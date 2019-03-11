@@ -6,16 +6,18 @@ export default function MapLoader () {
     if (window.AMap) {
       resolve(window.AMap)
     } else {
-      var script = document.createElement('script')
+      let script = document.createElement('script')
       script.type = 'text/javascript'
       script.async = true
       script.src =
-        'http://webapi.amap.com/maps?v=1.4.11&callback=initAMap&key=52cbd4c23c8ce8d2832b505d73c1a160'
+        'http://webapi.amap.com/maps?v=1.4.11&callback=initAMap&key=52cbd4c23c8ce8d2832b505d73c1a160&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow'
       script.onerror = reject
       document.head.appendChild(script)
+      console.log('AMap.js运行了')
     }
     window.initAMap = () => {
       resolve(window.AMap)
     }
   })
 }
+

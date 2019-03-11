@@ -15,76 +15,81 @@
   <div id="container">
     <div id="tip">鼠标悬停热点试试</div>
   </div>
+  <!--<div class="gis-master-map">-->
+    <!--<div id="container"></div>-->
+  <!--</div>-->
 
 </template>
 
 <script>
-    // import AMap from 'AMap'
-    // import AMapUI from 'AMapUI'
-    // import AMap from 'AMap'
-    export default {
-      name: 'gis-master-map',
-      // components: {AMap, AMapUI},
-      data () {
-        return {
-          map: null,
-          infoWindow: null
-        }
-      },
-      mounted () {
-        this.initmap()
-      },
-      methods: {
-        initmap: function () {
-          let map = this.map
-          map = new AMap.Map('container', {
-            resizeEnable: true,
-            center: [116.397428, 39.90923],
-            zoom: 13,
-            isHotspot: true
-          })
-          // let scale = new AMap.Scale({
-          //   visible: true
-          // })
-          // let toolBar = new AMap.ToolBar({
-          //   visible: true
-          // })
-          // let overView = new AMap.OverView({
-          //   visible: true
-          // })
-          // this.map.addControl(scale)
-          // this.map.addControl(toolBar)
-          // this.map.addControl(overView)
 
-          let self = this
-          let placeSearch = new AMap.PlaceSearch() // 构造地点查询类
-          self.infoWindow = new AMap.AdvancedInfoWindow({})
-          map.on('hotspotover', function (result) {
-            placeSearch.getDetails(result.id, function (status, result) {
-              if (status === 'complete' && result.info === 'OK') {
-                self.placeSearch_CallBack(result)
-              }
-            })
+  import MapLoader from '../../src/assets/js/AMap.js'
+  export default {
+    name: 'gis-master-map',
+    // components: {AMap, AMapUI},
+    data () {
+      return {
+        map: null,
+        infoWindow: null
+      }
+    },
+    mounted () {
+      // this.initmap()
+      let that = this
+      MapLoader().then(AMap => {
+        console.log('地图加载成功')
+        this.map = new AMap.Map('container', {
+          resizeEnable: true,
+          center: [117.000923, 36.675807],
+          zoom: 11,
+          isHotspot: true
+        })
+        let placeSearch = new AMap.PlaceSearch() // 构造地点查询类
+        this.infoWindow = new AMap.AdvancedInfoWindow({})
+        this.map.on('hotspotover', function (result) {
+          console.log('热点信息')
+          placeSearch.getDetails(result.id, function (status, result) {
+            if (status === 'complete' && result.info === 'OK') {
+              that.placeSearch_CallBack(result)
+            }
           })
-        },
-        // 回调函数
-        placeSearch_CallBack: function (data) { // infoWindow.open(map, result.lnglat);
-          let self = this
-          let poiArr = data.poiList.pois
-          let location = poiArr[0].location
-          this.infoWindow.setContent(self.createContent(poiArr[0]))
-          this.infoWindow.open(this.map, location)
-        },
-        createContent: function (poi) { // 信息窗体内容
-          var s = []
-          s.push('<div class="info-title">' + poi.name + '</div><div class="info-content">' + '地址：' + poi.address)
-          s.push('电话：' + poi.tel)
-          s.push('类型：' + poi.type)
-          s.push('<div>')
-          return s.join('<br>')
-        }
+        })
+      }, e => {
+        console.log('地图加载失败', e)
+      })
+    },
+    methods: {
+      // initmap: function () {
+      //   let that = this
+      //   MapLoader().then(AMap => {
+      //     console.log('地图加载成功')
+      //     that.map = new AMap.Map('container', {
+      //       center: [117.000923, 36.675807],
+      //       zoom: 11
+      //     })
+      //   }, e => {
+      //     console.log('地图加载失败', e)
+      //   })
+      // },
+      // 回调函数
+      placeSearch_CallBack: function (data) { // infoWindow.open(map, result.lnglat);
+        console.log('地点查询回调函数运行')
+        let self = this
+        let poiArr = data.poiList.pois
+        let location = poiArr[0].location
+        this.infoWindow.setContent(self.createContent(poiArr[0]))
+        this.infoWindow.open(this.map, location)
+      },
+      createContent: function (poi) { // 信息窗体内容
+        let s = []
+        s.push('<div class="info-title">' + poi.name + '</div><div class="info-content">' + '地址：' + poi.address)
+        s.push('电话：' + poi.tel)
+        s.push('类型：' + poi.type)
+        s.push('<div>')
+        return s.join('<br>')
       }
     }
+  }
 
 </script>
 
