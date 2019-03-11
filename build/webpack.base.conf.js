@@ -80,8 +80,8 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [
-          path.resolve(__dirname, "node_modules/@supermap/iclient-common"),
-          path.resolve(__dirname, "node_modules/@supermap/iclient-leaflet"),
+          // path.resolve(__dirname, "node_modules/@supermap/iclient-common"),
+          // path.resolve(__dirname, "node_modules/@supermap/iclient-leaflet"),
           path.resolve(__dirname, "node_modules/elasticsearch"),
         ]
       }

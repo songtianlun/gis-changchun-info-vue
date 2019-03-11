@@ -42,7 +42,8 @@ import '@supermap/iclient-leaflet'
 import 'leaflet'
 import 'heatmap.js'
 
-// import 'AMapUI'
+// import AMap from 'AMap'
+// import AMapUI from 'AMapUI'
 
 // anxio接口请求
 Vue.prototype.$http = Axios
