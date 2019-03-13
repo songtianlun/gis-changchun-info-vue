@@ -276,7 +276,7 @@
 </script>
 
 <style scoped>
-  #container {width:300px; height: 180px; margin:0 auto;width: 100%;height: 100%}
+    #container {width:300px; height: 180px; margin:0 auto;width: 100%;height: 100%}
   .map{
     height: 100%;
     width: 100%;
