@@ -49,7 +49,7 @@
         <a href="#"  style="padding:0 0px; color: inherit">
           <i class="fa fa-gears"></i>
         </a>
-        <m-dropdown-panel style="width: 200px; min-height: 100px;">
+        <m-dropdown-panel style="width: 200px; min-height: 100px; z-index:9999;">
           <el-form>
             <el-form-item label="侧边栏">
               <el-switch v-model="showAside" @change="handleSwitchHideSide" />
@@ -131,6 +131,7 @@ export default {
 </script>
 <style type="text/css">
   .side-switch{
+    z-index:9999;
     display: inline-block;
     font-size: 32px;
     cursor: pointer;
@@ -138,6 +139,7 @@ export default {
     margin-top: 10px;
   }
   .side-switch:hover{
+    z-index:9999;
     color: #fff;
   }
 </style>

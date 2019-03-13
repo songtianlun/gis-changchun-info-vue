@@ -65,7 +65,7 @@
         }
         this.map = L.map('map', {
           center: [43.912301, 125.323877],
-          zoom: 12,
+          zoom: 4,
           layers: [Gaode]
         })
         L.control.scale({ maxWidth: 200, metric: true, imperial: false }).addTo(this.map)

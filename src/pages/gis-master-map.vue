@@ -1,6 +1,6 @@
 <template>
-  <div id="container" class="map" onclick="console.log('地图被点击')">
-    <div id="tip">鼠标悬停热点试试</div>
+  <div id="container" class="map" v-on:click="mapclick">
+    <div id="tip"></div>
     <!--<div id="myPageTop">-->
       <!--<table>-->
         <!--<tr>-->
@@ -16,18 +16,35 @@
         <!--</tr>-->
       <!--</table>-->
     <!--</div>-->
+    <!--地图搜索-->
     <div class="info">
       <div class="input-item">
         <div class="input-item-prepend">
           <span class="input-item-text" style="width:5rem;">请输入关键字</span>
         </div>
         <input id='tipinput' type="text" onclick="console.log('输入框被点击'),document.getElementById('panel').style.visibility = 'hidden'// 隐藏">
+        <el-checkbox v-model="checked" id="checkhotpont">地图热点</el-checkbox>
+        <el-button type="primary" icon="el-icon-edit" id="maprule" size="mini" v-on:click="maprule">量算</el-button>
       </div>
     </div>
     <div id="panel"></div>
+    <!--地图量算-->
+    <div id="mapruledev" class="input-card" style='width: 22rem;'>
+      <div class="input-item-rule">
+        <el-radio  v-model="mapruleradio" label="prepare">脑洞测量</el-radio>
+        <el-radio  v-model="mapruleradio" label="rule">距离测量</el-radio>
+        <el-radio  v-model="mapruleradio" label="measureArea">面积测量</el-radio>
+        <!--<el-radio v-model="radio" label="1">备选项</el-radio>-->
+        <!--<el-radio v-model="radio" label="2">备选项</el-radio>-->
+        <!--<input type="radio" name='func' checked="" value='rule'><span class="input-text-rule">距离测量</span>-->
+        <!--<input type="radio" name='func' value='measureArea'><span class="input-text-rule">面积测量</span>-->
+      </div>
+      <div class="input-item-rule-button">
+        <!--<input id="close" type="button" class="btn" value="关闭" />-->
+        <el-button v-model="mapruleclose" class="btn" type="danger" size="mini" v-on:click="mapruleclose">停止量算</el-button>
+      </div>
+    </div>
   </div>
-
-
 </template>
 
 <script>
@@ -38,10 +55,17 @@
     // components: {AMap, AMapUI},
     data () {
       return {
+        that: this,
         map: null,
         infoWindow: null,
         indexplaceSearch: null,
-        MplaceSearch: null
+        MplaceSearch: null,
+        checked: false, // 地图热点
+        mapruleradio: 'prepare',
+        mouseTool: null,
+        maprulecolse: null,
+        advancedInfoWindow: null,
+        infowindowmapclick: null // 地图点击信息框
       }
     },
     mounted () {
@@ -49,18 +73,32 @@
       let that = this
       MapLoader().then(AMap => {
         console.log('地图加载成功')
+        let scale = new AMap.Scale({
+          visible: true
+        })
+        let toolBar = new AMap.ToolBar({
+          visible: true
+        })
+        let overView = new AMap.OverView({
+          visible: true
+        })
         this.map = new AMap.Map('container', {
           resizeEnable: true,
-          center: [117.000923, 36.675807],
-          zoom: 11,
+          center: [125.323877, 43.912301],
+          zoom: 12,
           isHotspot: true
         })
+        that.map.addControl(scale)
+        that.map.addControl(toolBar)
+        that.map.addControl(overView)
+        that.mouseTool = new AMap.MouseTool(that.map)
         let placeSearch = new AMap.PlaceSearch() // 构造地点查询类
-        that.infoWindow = new AMap.AdvancedInfoWindow({})
+        // that.infoWindow = new AMap.AdvancedInfoWindow({})
         that.map.on('hotspotover', function (result) {
           console.log('热点信息')
           placeSearch.getDetails(result.id, function (status, result) {
-            if (status === 'complete' && result.info === 'OK') {
+            if (status === 'complete' && result.info === 'OK' && that.checked === true) {
+              that.infoWindow = new AMap.AdvancedInfoWindow({})
               that.placeSearch_CallBack(result)
             }
           })
@@ -89,19 +127,48 @@
           // 关键字查询
           // that.MplaceSearch.search('方恒国际中心｜大恒科技大厦')
         })
+        // 地图点击事件
+        let clickHandler = function (e) {
+          console.log('您在[ ' + e.lnglat.getLng() + ',' + e.lnglat.getLat() + ' ]的位置点击了地图！')
+          // 根据经纬度搜索poi
+          //  构造地点查询类
+          let placeSearch = new AMap.PlaceSearch({})
+          let cpoint = [e.lnglat.getLng(), e.lnglat.getLat()] //  中心点坐标
+          placeSearch.searchNearBy('', cpoint, 200, function (status, result) {
+            // console.log(result.poiList.pois[0])
+            // content = that.createContent(result.poiList.pois[0])
+            // infopoi = result.poiList.pois[0]
+            // console.log(result.poiList.pois[0])
+            let infopoi = result.poiList.pois[0]
+            let content = '<div>' + infopoi.name + '</div><div>' + '地址：' + infopoi.address + '</br>' +
+              '电话：' + infopoi.tel + '</br>' +
+              '类型：' + infopoi.type +
+              '<div>'
+            // console.log(content)
+            that.infowindowmapclick = new AMap.AdvancedInfoWindow({
+              content: content,
+              offset: new AMap.Pixel(0, -30)
+            })
+            that.infowindowmapclick.open(that.map, cpoint)
+          })
+        }
+        // 绑定事件
+        that.map.on('click', clickHandler)
       }, e => {
         console.log('地图加载失败', e)
       })
     },
     methods: {
+      mapclick () {
+        let that = this
+      },
       // 回调函数
       placeSearch_CallBack: function (data) { // infoWindow.open(map, result.lnglat);
         let that = this
-        console.log('地点查询回调函数运行')
-        let self = this
+        console.log('placeSearch_CallBack地点查询回调函数运行')
         let poiArr = data.poiList.pois
         let location = poiArr[0].location
-        that.infoWindow.setContent(self.createContent(poiArr[0]))
+        that.infoWindow.setContent(that.createContent(poiArr[0]))
         that.infoWindow.open(this.map, location)
       },
       createContent: function (poi) { // 信息窗体内容
@@ -117,12 +184,95 @@
         that.indexplaceSearch.setCity(e.poi.adcode)
         that.indexplaceSearch.search(e.poi.name) // 关键字查询查询
         that.MplaceSearch.search(e.poi.name) //  搜索结果加载列表
-        console.log(e.poi.name)
+        // let layers = that.map.getLayers()
+        // console.log(layers)
+        // console.log(e.poi.name)
         document.getElementById('panel').style.visibility = 'visible'// 显示
+      },
+      maprule: function () {
+        let that = this
+        console.log('开始量算按钮被电击')
+        document.getElementById('mapruledev').style.visibility = 'visible'// 显示
+        that.checked = false
+        that.infoWindow.close()// 关闭地图热点信息框
+        that.mapruleradio = 'prepare'
+      },
+      mapruleclose: function () {
+        let that = this
+        //   document.getElementById('mapruleclose').onclick = function(){
+        that.mouseTool.close(true)// 关闭，并清除覆盖物
+        console.log('停止量算被点击')
+        //     for(var i=0;i<radios.length;i+=1){
+        //       radios[i].checked = false;
+        //     }
+        // }
+        document.getElementById('mapruledev').style.visibility = 'hidden'// 隐藏
+      }
+    },
+    watch: {
+      'checked': function () {
+        let that = this
+        console.log('watch中的checkhotpot被触发')
+        that.infoWindow.close()
+        console.log(that.checked)
+        // if (that.checked === true) {
+        //   that.infoWindow.close()
+        //   that.checked = false
+        // } else {
+        //   that.checked = true
+        // }
+      },
+      mapruleradio: function () {
+        let that = this
+        switch (that.mapruleradio) {
+          case 'rule': {
+            that.mouseTool.rule({
+              startMarkerOptions: {// 可缺省
+                icon: new AMap.Icon({
+                  size: new AMap.Size(19, 31), // 图标大小
+                  imageSize: new AMap.Size(19, 31),
+                  image: 'https://webapi.amap.com/theme/v1.3/markers/b/start.png'
+                })
+              },
+              endMarkerOptions: {// 可缺省
+                icon: new AMap.Icon({
+                  size: new AMap.Size(19, 31), // 图标大小
+                  imageSize: new AMap.Size(19, 31),
+                  image: 'https://webapi.amap.com/theme/v1.3/markers/b/end.png'
+                }),
+                offset: new AMap.Pixel(-9, -31)
+              },
+              midMarkerOptions: {// 可缺省
+                icon: new AMap.Icon({
+                  size: new AMap.Size(19, 31), // 图标大小
+                  imageSize: new AMap.Size(19, 31),
+                  image: 'https://webapi.amap.com/theme/v1.3/markers/b/mid.png'
+                }),
+                offset: new AMap.Pixel(-9, -31)
+              },
+              lineOptions: {// 可缺省
+                strokeStyle: 'solid',
+                strokeColor: '#FF33FF',
+                strokeOpacity: 1,
+                strokeWeight: 2
+              }
+              // 同 RangingTool 的 自定义 设置，缺省为默认样式
+            })
+            break
+          }
+          case 'measureArea': {
+            that.mouseTool.measureArea({
+              strokeColor: '#80d8ff',
+              fillColor: '#80d8ff',
+              fillOpacity: 0.3
+              // 同 Polygon 的 Option 设置
+            })
+            break
+          }
+        }
       }
     }
   }
-
 </script>
 
 <style scoped>
@@ -132,8 +282,55 @@
     width: 100%;
     float: left;
   }
+  #checkhotpont{
+    position: absolute;
+    top: 45px;
+    right: 180px;
+  }
+  #maprule{
+    position: absolute;
+    top: 40px;
+    right: 50px;
+  }
+  #tipinput{
+    top: -11px;
+    z-index:9990;
+  }
+  .input-item-rule{
+    height: 60px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+  }
+  .input-item-rule-button{
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+  }
+  .input-card {
+    z-index:9990;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: .25rem;
+    width: 22rem;
+    border-width: 0;
+    border-radius: 0.4rem;
+    box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+    position: fixed;
+    bottom: 4rem;
+    right: 1rem;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 0.75rem 1.25rem;
+    visibility: hidden;
+  }
   #myPageTop {
-    z-index:9999;
+    z-index:9990;
     /*position: relative;*/
     position: absolute;
     top: 5px;
@@ -147,17 +344,17 @@
     font-size: 14px;
   }
   #panel {
-    z-index:9999;
+    z-index:9990;
     position: absolute;
     background-color: white;
     max-height: 90%;
     overflow-y: auto;
-    top: 80px;
+    top: 100px;
     right: 22px;
     width: 340px;
   }
   #tip{
-    z-index:9999;
+    z-index:999;
   }
   .info-title{
     font-weight: bolder;
@@ -217,7 +414,7 @@
     margin-top: 0
   }
   .info {
-    z-index:9999;
+    z-index:999;
     padding: .75rem 1.25rem;
     margin-bottom: 1rem;
     border-radius: .6rem;
@@ -239,7 +436,7 @@
     -ms-flex-align: center;
     align-items: center;
     width: 100%;
-    height: 2rem;
+    height: 4rem;
   }
 
   .input-item:last-child {
@@ -266,6 +463,7 @@
 
   .input-item-prepend {
     margin-right: -1px;
+    height: 3rem;
   }
 
   .input-item-text, input[type=text],input[type=date], select {
@@ -275,7 +473,7 @@
   .input-item-text {
     width: 6rem;
     text-align: justify;
-    padding: 0.2rem 0.1rem;
+    padding: 0.2rem 0.4rem;
     display: inline-block;
     text-justify: distribute-all-lines;
     /*ie6-8*/
