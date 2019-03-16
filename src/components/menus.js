@@ -10,8 +10,6 @@ const menus = [
     label: '开发',
     submenu: [
       {id: 'Leaflet', icon: 'fa fa-leaf', path: '/Leaflet', label: 'Leaflet'},
-      {id: 'VueLeaflet', icon: 'fa fa-leaf', path: '/VueLeaflet', label: 'VueLeaflet'},
-      {id: 'Supermap-map', icon: 'fa fa-map', path: '/Supermap-map', label: 'Supermap-map'},
       {
         id: 'haut-gis-org',
         icon: 'fa fa-mortar-board',

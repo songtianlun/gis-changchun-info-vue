@@ -24,20 +24,9 @@
       this.initmap()
       this.addscenicmap()
       this.layercontrol()
+      this.firstmessage()
     },
     methods: {
-      openmessageinfo () {
-        this.$alert('这是一段内容', '标题名称', {
-          confirmButtonText: '确定',
-          callback: action => {
-            this.$message({
-              type: 'info',
-              message: `action: ${action}`
-            })
-          }
-        })
-        console.log('运行了消息框打开代码')
-      },
       initmap: function () {
         /**
          * 高德地图
@@ -72,6 +61,7 @@
         L.control.scale({ maxWidth: 200, metric: true, imperial: false }).addTo(this.map)
       },
       addscenicmap: function () {
+        let that = this
         this.scenicmapmarkers = L.markerClusterGroup()
         // 请求调用景点json数据
         this.$http.get('/api/scenicdata').then(response => {
@@ -96,11 +86,33 @@
               '维护支出：' + data.properties.维护支 + '万元' + '</br>' +
               '门票收入：' + data.properties.门票收 + '万元' + '</br>' +
               '注：数据0表示统计信息暂缺' + '</br>' +
-              '<button onclick="console.log(\'运行了消息框打开代码\')">进入</button>'
+              // '<button onclick="console.log(\'运行了消息框打开代码\')">进入</button>'
+               '<button v-on:click="open">进入</button>'
             // console.log(mapinfo)
+            let mgtitle = '国家级风景名胜区【' + data.properties.名称 + '】' + '2017年概况'
+            let mgcontent = '全称：' + data.properties.全称 + '</br>' +
+              '省份：' + data.properties.省份 + '</br>' +
+              '总面积：' + data.properties.总面积 + '平方公里' + '</br>' +
+              '游览面积：' + data.properties.游览面 + '平方公里' + '</br>' +
+              '2017游览量：' + data.properties.游人量 + '万人次' + '</br>' +
+              '境外游人量：' + data.properties.境外游 + '万人次' + '</br>' +
+              '固定资产投资完成额：' + data.properties.固定资 + '万元' + '</br>' +
+              '国家拨款：' + data.properties.国家拨 + '万元' + '</br>' +
+              '景区资金收入合计：' + data.properties.景区资 + '万元' + '</br>' +
+              '景区资金支出合计：' + data.properties.景区资_ + '万元' + '</br>' +
+              '经营收入：' + data.properties.经营收 + '万元' + '</br>' +
+              '经营支出：' + data.properties.经营支 + '万元' + '</br>' +
+              '维护支出：' + data.properties.维护支 + '万元' + '</br>' +
+              '门票收入：' + data.properties.门票收 + '万元' + '</br>' +
+              '注：数据0表示统计信息暂缺' + '</br>'
             let title = mapinfo
             let marker = L.marker(new L.LatLng(data.geometry.coordinates[1], data.geometry.coordinates[0]), { title: title })
-            marker.bindPopup(title)
+            // marker.bindPopup(title)
+            // bind event on marker
+            marker.on('click', function (e) {
+              console.log(e)
+              that.openmessage(mgtitle, mgcontent)
+            })
             this.scenicmapmarkers.addLayer(marker)
             // marker.on('click', function (e) {
             //   this.markerclick(e, data)
@@ -117,6 +129,45 @@
           '2017国家级风景名胜区': this.scenicmapmarkers
         }
         L.control.layers(this.baseLayers, this.overlays).addTo(this.map)
+      },
+      // 居中信息
+      openmessage (title, content) {
+        this.$confirm(content, title, {
+          confirmButtonText: '前往',
+          cancelButtonText: '继续',
+          type: 'warning',
+          center: true,
+          dangerouslyUseHTMLString: true
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '正在前往!'
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '继续查看'
+          })
+        })
+      },
+      firstmessage () {
+        this.$confirm('请使用右上角图层按钮切换信息源，当前地图标记信息为：2017年国家级风景名胜区', '温馨提示', {
+          confirmButtonText: '知道啦！',
+          cancelButtonText: '返回首页',
+          type: 'warning',
+          center: true
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '地图查看!'
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '前往首页'
+            })
+            this.$router.push({path: '/gis-master-map'})
+          })
+        })
       }
       // ,
       // markerclick: function (e, mapinfo) {
