@@ -26,7 +26,7 @@
           <span>{{user.username}}</span>
           <span class="caret"></span>
         </a>
-        <m-dropdown-panel >
+        <m-dropdown-panel style="z-index:9999;">
           <m-dropdown-item >用户信息</m-dropdown-item>
           <m-dropdown-item >修改密码</m-dropdown-item>
           <m-dropdown-item disabled>注销</m-dropdown-item>

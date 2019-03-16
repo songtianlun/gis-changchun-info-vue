@@ -1,5 +1,5 @@
 <template>
-  <div id="map" style="margin:0 auto;width: 100%;height: 100%"></div>
+  <div id="map" style="margin:0 auto;width: 100%;height: 100%;z-index:999;"></div>
 </template>
 
 <script>
@@ -89,7 +89,7 @@
               // '<button onclick="console.log(\'运行了消息框打开代码\')">进入</button>'
                '<button v-on:click="open">进入</button>'
             // console.log(mapinfo)
-            let mgtitle = '国家级风景名胜区【' + data.properties.名称 + '】' + '2017年概况'
+            let mgtitle = '【' + data.properties.名称 + '】' + ''
             let mgcontent = '全称：' + data.properties.全称 + '</br>' +
               '省份：' + data.properties.省份 + '</br>' +
               '总面积：' + data.properties.总面积 + '平方公里' + '</br>' +

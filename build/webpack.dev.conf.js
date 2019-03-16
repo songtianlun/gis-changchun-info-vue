@@ -20,6 +20,10 @@ var scenicdata = require('../src/assets/data/2017-nation-Beauty-spot-GeoJson.jso
 var apiRoutes = express.Router()
 app.use('/api', apiRoutes)
 
+// 获取风向信息json
+var wind_data = require('../src/assets/data/wind-global.json')
+
+
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
@@ -56,6 +60,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         res.json({
           errno: 0,
           data: scenicdata
+        })
+      })
+      app.get('/api/winddata', (req, res) => {
+        res.json({
+          errno: 0,
+          data: wind_data
         })
       })
     }

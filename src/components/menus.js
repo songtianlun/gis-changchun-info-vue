@@ -1,9 +1,10 @@
 const menus = [
   {id: '0', label: '欢迎使用', path: '/', icon: 'fa fa-dashboard'},
   {id: 'gis-master-map', label: '信息查询', path: '/gis-master-map', icon: 'fa fa-map-o'},
-  {id: 'gis-info-form', label: '信息一览', path: '/gis-info-form', icon: 'fa fa-wpforms'},
+  {id: 'gis-navi-form', label: '地图导航', path: '/gis-navi-map', icon: 'fa fa-location-arrow'},
   {id: 'gis-population-density', label: '人口密度', path: '/gis-population-density', icon: 'fa fa-users'},
   {id: 'gis-information-map', label: '信息聚合', path: '/gis-information-map', icon: 'fa fa-tree'},
+  {id: 'gis-weather-map', label: '气象地图', path: '/gis-weather-map', icon: 'fa fa-umbrella'},
   {
     id: 'develop',
     icon: 'fa fa-puzzle-piece',

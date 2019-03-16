@@ -35,6 +35,8 @@ export default new Router({
         {path: '/gis-info-form', name: 'gis-info-form', component: page('gis-info-form')},
         {path: '/gis-population-density', name: 'gis-population-density', component: page('gis-population-density')},
         {path: '/gis-information-map', name: 'gis-information-map', component: page('gis-information-map')},
+        {path: '/gis-navi-map', name: 'gis-navi-map', component: page('gis-navi-map')},
+        {path: '/gis-weather-map', name: 'gis-weather-map', component: page('gis-weather-map')},
         {path: '/dev-master-map', name: 'dev-master-map', component: page('dev-master-map')},
         {path: '/dev-translate', name: 'dev-translate', component: page('dev-translate')},
         {path: '/dev-search', name: 'dev-search', component: page('dev-search')},
