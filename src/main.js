@@ -41,6 +41,7 @@ import 'leaflet/dist/leaflet.css'
 import '@supermap/iclient-leaflet'
 import 'leaflet'
 import 'heatmap.js'
+import 'leaflet.markercluster'
 
 // import AMap from 'AMap'
 // import AMapUI from 'AMapUI'

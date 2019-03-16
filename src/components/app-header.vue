@@ -16,6 +16,8 @@
     <a style="font-family:黑体 ;font-weight: 100;font-size: 25px; color: white;">公共信息服务平台</a>
   </m-nav>
   <m-nav align="right">
+
+
     <m-nav-item padding="0">
       <a href="https://github.com/haut-gis-org/gis-changchun-info-vue" target="_blank"><i class="fa fa-github" style="font-size: 26px;vertical-align: middle;"></i>&nbsp;Github</a>
     </m-nav-item>

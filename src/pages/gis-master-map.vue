@@ -22,7 +22,7 @@
         <div class="input-item-prepend">
           <span class="input-item-text" style="width:5rem;">请输入关键字</span>
         </div>
-        <input id='tipinput' type="text" onclick="console.log('输入框被点击'),document.getElementById('panel').style.visibility = 'hidden'// 隐藏">
+        <input id='tipinput' type="text" v-on:click="tipinputclick" v-on:keyup.13="tipinputenter">
         <el-checkbox v-model="checked" id="checkhotpont">地图热点</el-checkbox>
         <el-button type="primary" icon="el-icon-edit" id="maprule" size="mini" v-on:click="maprule">量算</el-button>
       </div>
@@ -65,7 +65,8 @@
         mouseTool: null,
         maprulecolse: null,
         advancedInfoWindow: null,
-        infowindowmapclick: null // 地图点击信息框
+        infowindowmapclick: null, // 地图点击信息框\
+        marker: []
       }
     },
     mounted () {
@@ -110,9 +111,10 @@
         }
         let auto = new AMap.Autocomplete(autoOptions)
         that.indexplaceSearch = new AMap.PlaceSearch({
-          map: that.map
+          // map: that.map
         }) // 构造地点查询类
-        AMap.event.addListener(auto, 'select', this.select)// 注册监听，当选中某条记录时会触发
+        AMap.event.addListener(auto, 'select', that.select)// 注册监听，当选中某条记录时会触发
+        // AMap.event.addListener(that.MplaceSearch, 'markerClick', that.markerclick)// 注册监听，当选中某条记录时会触发
         // 搜索结果显示
         AMap.service(['AMap.PlaceSearch'], function () {
           that.MplaceSearch = new AMap.PlaceSearch({ // 构造地点查询类
@@ -162,6 +164,22 @@
       mapclick () {
         let that = this
       },
+      tipinputclick () {
+        let that = this
+        console.log('输入框被点击')
+        that.infowindowmapclick.close()// 关闭高级信息框
+        that.MplaceSearch.clear() // 清除搜索结果
+        document.getElementById('panel').style.visibility = 'hidden'// 隐藏
+        // let i = 0
+        // while (i < that.marker.length) {
+        //   console.log(that.marker[i])
+        //   that.map.remove(that.marker[i])
+        //   i++
+        // }
+      },
+      markerclick: function (e) {
+        console.log('marker被点击')
+      },
       // 回调函数
       placeSearch_CallBack: function (data) { // infoWindow.open(map, result.lnglat);
         let that = this
@@ -182,11 +200,52 @@
       select: function (e) {
         let that = this
         that.indexplaceSearch.setCity(e.poi.adcode)
-        that.indexplaceSearch.search(e.poi.name) // 关键字查询查询
-        that.MplaceSearch.search(e.poi.name) //  搜索结果加载列表
+        // that.indexplaceSearch.search(e.poi.name, function (status, result) {
+        //   console.log('这里是选择后的查询结果')
+        //   console.log(result)
+        // })
+        // 关键字查询查询
+        that.MplaceSearch.search(e.poi.name, function (status, result) {
+          // // 查询成功时，result即对应匹配的POI信息
+          // console.log(result)
+          // var pois = result.poiList.pois
+          // for (var i = 0; i < pois.length; i++) {
+          //   var poi = pois[i]
+          //   // that.marker = []
+          //   that.marker[i] = new AMap.Marker({
+          //     position: poi.location, // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+          //     title: poi.name + '测试'
+          //   })
+          //   // 将创建的点标记添加到已有的地图实例：
+          //   that.map.add(that.marker[i])
+          // }
+        }) //  搜索结果加载列表
         // let layers = that.map.getLayers()
         // console.log(layers)
         // console.log(e.poi.name)
+        document.getElementById('panel').style.visibility = 'visible'// 显示
+      },
+      tipinputenter: function () {
+        let inputstring = document.getElementById('tipinput').value
+        console.log(inputstring)
+        let that = this
+        // that.infowindowmapclick.close()// 关闭高级信息框
+        // 关键字查询查询
+        that.MplaceSearch.search(inputstring, function (status, result) {
+          // // 查询成功时，result即对应匹配的POI信息
+          // console.log(result)
+          // var pois = result.poiList.pois
+          // for (var i = 0; i < pois.length; i++) {
+          //   var poi = pois[i]
+          //   // that.marker = []
+          //   that.marker[i] = new AMap.Marker({
+          //     position: poi.location, // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+          //     title: poi.name + '测试'
+          //   })
+          //   // 将创建的点标记添加到已有的地图实例：
+          //   that.map.add(that.marker[i])
+          // }
+        }) //  搜索结果加载列表
         document.getElementById('panel').style.visibility = 'visible'// 显示
       },
       maprule: function () {
@@ -214,7 +273,7 @@
         let that = this
         console.log('watch中的checkhotpot被触发')
         that.infoWindow.close()
-        console.log(that.checked)
+        // console.log(that.checked)
         // if (that.checked === true) {
         //   that.infoWindow.close()
         //   that.checked = false

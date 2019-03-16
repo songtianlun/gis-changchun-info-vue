@@ -6,7 +6,8 @@
   import 'element-ui/lib/theme-chalk/index.css'
   import {chinaProvider} from 'leaflet.chinatmsproviders'
   import L from 'leaflet'
-  import markerClusterGroup from 'leaflet.markercluster'
+  import 'leaflet.markercluster'
+  // import 'leaflet'
 
   export default {
     name: 'gis-information-map',
@@ -127,5 +128,5 @@
 </script>
 
 <style>
-  /*@import "~leaflet.markercluster/dist/MarkerCluster.css";*/
+
 </style>
