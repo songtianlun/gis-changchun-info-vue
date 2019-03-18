@@ -11,5 +11,5 @@
 - Use Axios to dock the data
 - Based on leaflet and amap engines
 
-[GitHub](https://github.com/haut-gis-org/gis-changchun-info-vue)
+[GitHub](https://github.com/songtianlun/gis-changchun-info-vue)
 [Get Started](quickstart.md)
