@@ -2,6 +2,8 @@
 
 > 长春市公共信息服务平台
 
+文档说明：[https://haut-gis-org.github.io/gis-changchun-info-vue](https://haut-gis-org.github.io/gis-changchun-info-vue)
+
 ## Build Setup
 
 ``` bash
