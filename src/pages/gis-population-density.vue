@@ -61,7 +61,7 @@
             count: count
           }
           points.push(point)
-          console.log(point)
+          // console.log(point)
         }
 
         var SimulateData =

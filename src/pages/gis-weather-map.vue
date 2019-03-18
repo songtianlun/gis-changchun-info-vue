@@ -6,13 +6,18 @@
   import 'leaflet-velocity'
   import {chinaProvider} from 'leaflet.chinatmsproviders'
   import L from 'leaflet'
+  import MapLoader from '../../src/assets/js/AMap.js'
+  import axios from 'axios'
   export default {
     name: 'gis-weather-map',
     data () {
       return {
         map: null,
         layerControl: null,
-        velocityLayer: null
+        velocityLayer: null,
+        weather: null,
+        loading: null,
+        marker: null
       }
     },
     mounted () {
@@ -36,10 +41,8 @@
           '(toner-lite,$fff[difference],$fff[@23],$fff[hsl-saturation@20])/' +
           '{z}/{x}/{y}.png',
           {
-            attribution: 'Tiles &copy; Esri &mdash;'
-            // +
-            // ' Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, ' +
-            // 'NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+            attribution: 'Tiles &copy; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, ' +
+              'NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong)'
           }
         )
         /**
@@ -146,31 +149,131 @@
         // this.baseLayer.addTo(this.map)
         // L.control.scale({ maxWidth: 200, metric: true, imperial: false }).addTo(this.map)
         // use event
-        let mypop = L.popup()
+
+        // 加载高德地图
+        MapLoader().then(AMap => {
+          console.log('地图加载成功')
+          // this.map = new AMap.Map('container', {
+          //   resizeEnable: true,
+          //   center: [125.323877, 43.912301],
+          //   zoom: 12,
+          //   isHotspot: true
+          // })
+        }, e => {
+          console.log('地图加载失败', e)
+        })
+
         this.map.on('click', function (e) {
-          let content = '你临幸了这个点：</br>'
+          that.openFullScreen2() // 打开加载中
+          let content = '你临幸了这个点：'
           content += e.latlng.toString()
           console.log(content)
-          mypop.setLatLng(e.latlng)
-            .setContent(content)
-          // .openOn(this.map)
-          // .addTo(this.map)
+          // 调用高德api获取当前位置adcode
+          let searchapi = '/amapapi/v3/place/around?key=d019e2f0225bc0ec9ee2160602987a24&location=' +
+          e.latlng.lng +
+          ',' +
+          e.latlng.lat +
+          '&keywords=&types=&radius=&offset=&page=&extensions=all'
+          axios
+            .get(searchapi)
+            .then(response => {
+              // 获取到adcode
+              let locadcode = response.pois[0].adcode
+              let weatherget = '/amapapi/v3/weather/weatherInfo?key=d019e2f0225bc0ec9ee2160602987a24&extensions=all&city=' + locadcode
+              axios
+                .get(weatherget)
+                .then(response => {
+                  // 获取到adcode
+                  console.log(response)
+                  let data = response.forecasts[0]
+                  let weather = data.casts
+                  axios
+                    .get('/amapapi/v3/weather/weatherInfo?key=d019e2f0225bc0ec9ee2160602987a24&extensions=base&city=' + locadcode)
+                    .then(responselive => {
+                      console.log(responselive)
+                      let liveweather = responselive.lives[0]
+                      let weatherinfo = '城市/区：' + data.city + '</br>' +
+                        '归属：' + data.province + '省' + '</br>' +
+                        '实时天气' + '</br>' +
+                        '更新时间：' + liveweather.reporttime + '</br>' +
+                        '天气' + liveweather.weather + '</br>' +
+                        '温度：' + liveweather.temperature + '℃' + '</br>' +
+                        '风力：' + liveweather.windpower + '</br>' +
+                        '风向：' + liveweather.winddirection + '</br>' +
+                        '湿度：' + liveweather.humidity + '</br>' + '</br>' +
+                        '天气预报' + '</br>' +
+                        '<table border="1">' +
+                        '<tr>' +
+                        '<td>日期</td>' +
+                        '<td>天气</td>' +
+                        '<td>温度</td>' +
+                        '<td>风力</td>' +
+                        '<td>风向</td>' +
+                        '</tr>'
+                      for (let i = 1; i < 4; i++) {
+                        weatherinfo += '<tr>' +
+                          '<td>' + weather[i].date + '</td>' +
+                          '<td>' + weather[i].nightweather + '转' + weather[i].dayweather + '</td>' +
+                          '<td>' + weather[i].nighttemp + '～' + weather[i].daytemp + '℃' + '</td>' +
+                          '<td>' + weather[i].daypower + '</td>' +
+                          '<td>' + weather[i].daywind + '</td>' +
+                          '</tr>'
+                      }
+                      weatherinfo += '</table>'
+                      // console.log(nowweather)
+                      var popup = L.popup()
+                        .setLatLng(e.latlng)
+                        .setContent(weatherinfo)
+                        .openOn(that.map)
+                      that.closeFullScreen2() // 关闭加载中
+                    })
+                })
+                .catch(error => {
+                  console.log(error)
+                  that.$message({
+                    message: '请求数据失败',
+                    type: 'warning'
+                  })
+                  that.closeFullScreen2error()
+                })
+            })
+            .catch(error => {
+              console.log(error)
+              that.$message({
+                message: '请求数据失败',
+                type: 'warning'
+              })
+              that.closeFullScreen2error()
+            })
         })
-        // mypop.addTo(this.map)
-        // that.$.getJSON('./src/assets/data/wind-global.json', function (data) {
-        //   console.log(data)
-        //   var velocityLayer = L.velocityLayer({
-        //     displayValues: true,
-        //     displayOptions: {
-        //       velocityType: 'Global Wind',
-        //       displayPosition: 'bottomleft',
-        //       displayEmptyString: 'No wind data'
-        //     },
-        //     data: data,
-        //     maxVelocity: 15
-        //   })
-        //   that.layerControl.addOverlay(velocityLayer, 'Wind - Global')
-        // })
+      },
+      openFullScreen2 () {
+        let that = this
+        that.loading = this.$loading({
+          lock: true,
+          text: '正在请求当地天气数据',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        })
+        setTimeout(() => {
+          that.loading.close()
+        }, 3000)
+      },
+      closeFullScreen2 () {
+        let that = this
+        that.loading.close()
+        that.$message({
+          message: '请求天气数据成功！',
+          type: 'success'
+        })
+      },
+      closeFullScreen2error () {
+        let that = this
+        that.loading.close()
+        that.$message({
+          message: '请求失败',
+          type: 'warning'
+        })
       },
       addvelocity () {
         let that = this

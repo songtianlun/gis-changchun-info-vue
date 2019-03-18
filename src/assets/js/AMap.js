@@ -11,7 +11,7 @@ export default function MapLoader () {
       script.async = true
       script.src =
         'http://webapi.amap.com/maps?v=1.4.13&callback=initAMap&key=52cbd4c23c8ce8d2832b505d73c1a160&plugin=AMap.PlaceSearch,AMap.AdvancedInfoWindow,' +
-        'AMap.Autocomplete,AMap.Scale,AMap.OverView,AMap.ToolBar,AMap.MouseTool'
+        'AMap.Autocomplete,AMap.Scale,AMap.OverView,AMap.ToolBar,AMap.MouseTool,AMap.Driving,AMap.Walking,AMap.Transfer'
       script.onerror = reject
       document.head.appendChild(script)
       console.log('AMap.js运行了')

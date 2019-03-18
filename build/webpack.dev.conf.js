@@ -20,9 +20,11 @@ var scenicdata = require('../src/assets/data/2017-nation-Beauty-spot-GeoJson.jso
 var apiRoutes = express.Router()
 app.use('/api', apiRoutes)
 
-// 获取风向信息json
-var wind_data = require('../src/assets/data/wind-global.json')
 
+let wind_data = require('../src/assets/data/wind-global.json') // 获取风向信息json
+let nature_2016_protect = require('../src/assets/data/nature_2016_protect.json') // 2016年5A景区
+let nation_2016_geology = require('../src/assets/data/nation_2016_geology.json') // 2016国家地质公园
+let nation_2016_woods = require('../src/assets/data/nation_2016_woods.json') // 2016年国家森林公园
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -39,6 +41,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
       ],
     },
+    disableHostCheck: true,
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
     compress: true,
@@ -66,6 +69,24 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         res.json({
           errno: 0,
           data: wind_data
+        })
+      })
+      app.get('/api/nation_2016_geology', (req, res) => {
+        res.json({
+          errno: 0,
+          data: nation_2016_geology
+        })
+      })
+      app.get('/api/nation_2016_woods', (req, res) => {
+        res.json({
+          errno: 0,
+          data: nation_2016_woods
+        })
+      })
+      app.get('/api/nature_2016_protect', (req, res) => {
+        res.json({
+          errno: 0,
+          data: nature_2016_protect
         })
       })
     }
