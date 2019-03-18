@@ -25,3 +25,19 @@ Webpack 是当下最好的前端资源加载、打包的工具，没有之一，
 >Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库。
 
 ![](http://photo-frytea.test.upcdn.net/20190318071914.png)
+
+## vue-element-admin-tpl
+
+GitHub:[https://github.com/mengdu/vue-element-admin-tpl](https://github.com/mengdu/vue-element-admin-tpl)
+
+基于vue + element-ui开发的后端管理系统模板。
+
+* vue
+* vue-router
+* axios
+* element-ui
+* nprogress
+* 使用了 FontAwesome 4.7.0 的图标
+
+使用模板框架帮助我们快速熟悉并构建vue应用。
+![](http://photo-frytea.test.upcdn.net/20190318200833.png)
