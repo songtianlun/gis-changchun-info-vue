@@ -7,10 +7,9 @@
       <el-col :span="6"><div class="grid-content bg-lucency">
         <h3 style="font-family:黑体 ;font-weight: 100;font-size: 20px;">开源声明</h3>
         <div class="text-center">
-          <p>环境 & UI：<a href="https://cn.vuejs.org/">vue</a> + <a href="http://element-cn.eleme.io/#/zh-CN">element</a></p>
-          <p>框架：<a href="https://github.com/mengdu/vue-element-admin-tpl">vue-element-admin-tpl</a></p>
-          <p>Logo来源：<a href="https://www.iconfinder.com/icons/2090181/geo_global_world_icon">geo_global_world_icon</a></p>
-          <p>图标资源：<a href="http://fontawesome.dashgame.com/">Font Awesome</a></p>
+          <p>Environment & UI：<a href="https://cn.vuejs.org/">vue</a> + <a href="http://element-cn.eleme.io/#/zh-CN">element</a></p>
+          <p>Frame：<a href="https://github.com/mengdu/vue-element-admin-tpl">vue-element-admin-tpl</a></p>
+          <p>Document：<a href="https://haut-gis-org.github.io/gis-changchun-info-vue/#/">Geo-Info-Server</a></p>
         </div>
       </div></el-col>
 

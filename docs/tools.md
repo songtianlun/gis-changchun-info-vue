@@ -147,3 +147,24 @@ docsify 是一个动态生成文档网站的工具。不同于 GitBook、Hexo �
 官网传送门：[http://www.fontawesome.com.cn/](http://www.fontawesome.com.cn/)
 
 ![](http://photo-frytea.test.upcdn.net/20190318200642.png)
+
+## 开放资源
+
+### iconfinder
+
+官网传送门：[https://www.iconfinder.com](https://www.iconfinder.com)
+
+一个图标资源站，本站使用了其中的[geo_global_world_icon](https://www.iconfinder.com/icons/2090181/geo_global_world_icon)图标资源。
+
+![logo](https://www.iconfinder.com/icons/2090181/geo_global_world_icon)
+
+### Font Awesome
+
+官网传送门：[http://fontawesome.dashgame.com](http://fontawesome.dashgame.com/)
+
+一个图标资源集合站，可以直接调用并自定义颜色和大小。
+比如：
+
+![logo](https://icongr.am/simple/bower.svg?color=111111&size=120)
+
+
