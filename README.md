@@ -1,14 +1,14 @@
 # Geo-Indo-Server
 
-[![GitHub license](https://img.shields.io/github/license/haut-gis-org/gis-changchun-info-vue)](https://github.com/haut-gis-org/gis-changchun-info-vue/blob/master/LICENSE)
-[![GitHub forks](https://img.shields.io/github/forks/haut-gis-org/gis-changchun-info-vue)](https://github.com/haut-gis-org/gis-changchun-info-vue/network)
-[![GitHub issues](https://img.shields.io/github/issues/haut-gis-org/gis-changchun-info-vue)](https://github.com/haut-gis-org/gis-changchun-info-vue/issues)
-[![GitHub stars](https://img.shields.io/github/stars/haut-gis-org/gis-changchun-info-vue?style=social)](https://github.com/haut-gis-org/gis-changchun-info-vue/stargazers)
+[![GitHub license](https://img.shields.io/github/license/songtianlun/gis-changchun-info-vue)](https://github.com/songtianlun/gis-changchun-info-vue/blob/master/LICENSE)
+[![GitHub forks](https://img.shields.io/github/forks/songtianlun/gis-changchun-info-vue)](https://github.com/songtianlun/gis-changchun-info-vue/network)
+[![GitHub issues](https://img.shields.io/github/issues/songtianlun/gis-changchun-info-vue)](https://github.com/songtianlun/gis-changchun-info-vue/issues)
+[![GitHub stars](https://img.shields.io/github/stars/songtianlun/gis-changchun-info-vue?style=social)](https://github.com/songtianlun/gis-changchun-info-vue/stargazers)
 
 
 > 长春市公共信息服务平台
 
-文档说明：[https://haut-gis-org.github.io/gis-changchun-info-vue](https://haut-gis-org.github.io/gis-changchun-info-vue)
+文档说明：[https://songtianlun.github.io/gis-changchun-info-vue](https://songtianlun.github.io/gis-changchun-info-vue)
 
 ## Build Setup
 
