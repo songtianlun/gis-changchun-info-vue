@@ -78,7 +78,7 @@
           while (array[i]) {
             let data = array[i]
             // console.log(mapinfo)
-            let mgtitle = '【' + data.properties.名称 + '】' + ''
+            let mgtitle = data.properties.名称 + ''
             let mgcontent = '类型：' + '2017年国家级风景名胜' + '</br>' +
               '全称：' + data.properties.全称 + '</br>' +
               '省份：' + data.properties.省份 + '</br>' +
@@ -124,7 +124,7 @@
           while (array[i]) {
             let data = array[i]
             // console.log(data)
-            let mgtitle = '【' + data.properties.name + '】' + ''
+            let mgtitle = data.properties.name + ''
             let mgcontent = '类型：' + '2016年国家级地址公园' + '</br>' +
               '主要地质景观：' + data.properties.主要地 + '</br>' +
               '主要人文景观：' + data.properties.主要人 + '</br>' +
@@ -158,7 +158,7 @@
           while (array[i]) {
             let data = array[i]
             // console.log(data)
-            let mgtitle = '【' + data.properties.name_short + '】' + ''
+            let mgtitle = data.properties.name_short + ''
             let mgcontent = '全称：' + data.properties.name + '</br>' +
               '类型：' + '2016年国家级森林公园' + '</br>' +
               '面积：' + data.properties.area_ha + '平方公里' + '</br>' +
@@ -193,7 +193,7 @@
           while (array[i]) {
             let data = array[i]
             // console.log(data)
-            let mgtitle = '【' + data.properties.name + '】' + ''
+            let mgtitle = data.properties.name + ''
             let mgcontent = '类型：' + '2016年国家级自然保护区' + '</br>' +
               '面积：' + data.properties.area + '平方公里' + '</br>' +
               '所在省份：' + data.properties.Province + '</br>' +
@@ -236,9 +236,15 @@
           center: true,
           dangerouslyUseHTMLString: true
         }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '正在前往!'
+          // this.$message({
+          //   type: 'success',
+          //   message: '正在前往!'
+          // })
+          this.$router.push({
+            path: '/gis-navi-map',
+            query: {
+              id: title
+            }
           })
         }).catch(() => {
           this.$message({

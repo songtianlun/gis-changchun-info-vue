@@ -60,6 +60,7 @@
       let that = this
       that.initmap()
       that.initautoinput()
+      that.init_input()
     },
     methods: {
       mapclick () {
@@ -128,6 +129,12 @@
         AMap.event.addListener(autoapproach1, 'select', that.selectapproach1)// 注册监听，当选中某条记录时会触发
         AMap.event.addListener(autoapproach2, 'select', that.selectapproach2)// 注册监听，当选中某条记录时会触发
         AMap.event.addListener(autostop, 'select', that.selectstop)// 注册监听，当选中某条记录时会触发
+      },
+      init_input () {
+        let that = this
+        let startdefault = that.$route.query.id + ' '
+        // console.log(startdefault)
+        document.getElementById('start').value = startdefault
       },
       clickinput () {
         document.getElementById('panel').style.visibility = 'hidden'// 隐藏
